@@ -196,6 +196,7 @@ public async addNewEscalationLadders(){
      const saveBTn = await this.findLocator(locators.saveButton);
      await saveBTn.waitFor({ state: "visible" });
     await saveBTn.click();
+    await this.page.waitForTimeout(5000); 
 }
 
 
