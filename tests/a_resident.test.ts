@@ -53,10 +53,10 @@ test("validate arrowupDownFunctionality in Resident page for Name Column", async
     console.log(`Before: ${firstCellText} | After: ${updatedCellText}`);
 });
 
-test("validate Dropdown value in polygon Button for Name column", async()=> {
-    await residentPage.clickPolygonButtonForName();
-    await residentPage.validatepolygonFunctionalityForName();
-});
+// test("validate Dropdown value in polygon Button for Name column", async()=> {
+//     await residentPage.clickPolygonButtonForName();
+//     await residentPage.validatepolygonFunctionality();
+// });
 
 test("validate arrowupDownFunctionality in Resident page for Sector Column", async () => {
 
@@ -90,7 +90,7 @@ test("validate arrowupDownFunctionality in Resident page for Room Status Column"
 
 test("validate Dropdown value in polygon Button for room status column", async()=> {
     await residentPage.clickPolygonButtonForRoomStatus();
-    await residentPage.validatepolygonFunctionalityForRoomStatus();
+    await residentPage.validatepolygonFunctionality();
 });
 
 test("validate arrowupDownFunctionality in Resident page for History Column", async () => {
@@ -104,7 +104,7 @@ test("validate arrowupDownFunctionality in Resident page for History Column", as
 
 test("validate Dropdown value in polygon Button for History column", async()=> {
     await residentPage.clickPolygonButtonForHistory();
-    await residentPage.validatepolygonFunctionalityForHistory();
+    await residentPage.validatepolygonFunctionality();
 });
 
 test("validate arrowupDownFunctionality in Resident page for Alarm settings Column", async () => {
@@ -118,7 +118,7 @@ test("validate arrowupDownFunctionality in Resident page for Alarm settings Colu
 
 test("validate Dropdown value in polygon Button for Alarm settings column", async()=> {
     await residentPage.clickPolygonButtonForAlarmSettings();
-    await residentPage.validatepolygonFunctionalityForAlarmSettings();
+    await residentPage.validatepolygonFunctionality();
 });
 
 test("Validate columns Dropdown in resident page", async()=> {

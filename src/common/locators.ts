@@ -86,7 +86,25 @@ const Locators = {
  delayStep1Xpath: "//label[text()='Vertraging stap 1']",
  shiftstepDropdownXpath: "button[role='combobox']",
  stepDelayXpath: "//input[@type='number' and @name='step_1_delay']",
- trashBtnXpath: "div.grid.grid-cols-3 svg.lucide-trash2"
+ trashBtnXpath: "div.grid.grid-cols-3 svg.lucide-trash2",
+ usersLinkXpath: "//span[text()='Gebruikers']",
+ naamUserXpath: "//div[span[text()='Naam']]",
+ emailUserXpath: "//div[span[text()='E-mail']]",
+ rollenUserXpath: "//div[span[text()='Rollen']]",
+ sectorUserXpath: "//div[span[text()='Zorgsectie(s)']]",
+ addNewUserXpath: "button:has-text('Toevoegen')",
+ formLabelXpath: "form#resourceForm label[data-slot='form-label']",
+ emailUsersDataFormXpath: "//input[@name='email']",
+ nameUsersDataFormXpath: "//input[@name='displayName']",
+ passwordUsersDataFormXpath: "//input[@name='password']",
+ confPasswordUsersDataFormXpath: "//input[@name='confirmpassword']",
+ phoneNumberUsersDataFormXpath: "//input[@name='phoneNumber']",
+ rollenUsersDataFormXpath: "//label[text()='Rollen']/following-sibling::div//input[@placeholder='Zoeken...']",
+ sectorUsersDataFormXpath: "//label[text()='Zorgsectie(s)']/following-sibling::div//input[@placeholder='Zoeken...']",
+ rollenValueToSelectXpath: "[data-value='Organisatiebeheerder']",
+ searchInputBoxXpath: "//input[@type='search']",
+ filterResetBtnXpath: "//button[normalize-space()='Filters resetten']"
+
  
 };
 

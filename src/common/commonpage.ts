@@ -10,7 +10,7 @@ export default class CommonPage extends Wrapper {
 
     public generatedEmailId(): string {
         if(!CommonPage.generatedEmail){
-            CommonPage.generatedEmail = `user_${Math.random().toString(36).substring(36).substring(2,5)}@sensara.eu`;   
+            CommonPage.generatedEmail = `user_${Math.random().toString(36).substring(2,7)}@sensara.eu`;   
         }
         return CommonPage.generatedEmail;
     }

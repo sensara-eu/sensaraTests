@@ -18,6 +18,8 @@ export default class ResidentPage extends Wrapper{
     await residentLink.first().click();
   }
 
+  // this method is used to get all the table headers in resident page and 
+// validate it against the expected one
   public async getAllHeadersText(): Promise<string[]> {
     const tableHeaders= await this.findLocator(locators.tableHeaders);
     await tableHeaders.last().waitFor({state:"visible"});
@@ -88,18 +90,6 @@ public async clickPolygonButtonForName(){
     await polyBtn.first().click();
 }
 
-public async validatepolygonFunctionalityForName(){
-    const dropdownItems = await this.findLocator(locators.polygondropdownOptions);
-    const numberOfOptions = dropdownItems.count();
-  
-    for (let i = 0; i < await numberOfOptions ; i++) {
-    const item = dropdownItems.nth(i);
-    const text = await item.innerText();
-    console.log(`Clicking on: ${text}`);
-
-    await item.click();
-}}
-
 public async clickPolygonButtonForSector(){
     const polyBtn = await this.findLocator(locators.polygonBtn);
     await polyBtn.nth(1).waitFor({ state: 'visible' });
@@ -123,7 +113,7 @@ public async clickPolygonButtonForRoomStatus(){
     await polyBtn.nth(2).waitFor({ state: 'visible' });
     await polyBtn.nth(2).click();
 }
-public async validatepolygonFunctionalityForRoomStatus(){
+public async validatepolygonFunctionality(){
     await this.page.waitForSelector(locators.polygondropdownOptions);
     const dropdownItems = await this.findLocator(locators.polygondropdownOptions);
     const count = dropdownItems.count();
@@ -140,34 +130,15 @@ public async clickPolygonButtonForHistory(){
     await polyBtn.nth(3).waitFor({ state: 'visible' });
     await polyBtn.nth(3).click();
 }
-public async validatepolygonFunctionalityForHistory(){
-    await this.page.waitForSelector(locators.polygondropdownOptions);
-    const dropdownItems = await this.findLocator(locators.polygondropdownOptions);
-    const count = dropdownItems.count();
-  
-    for (let i = 0; i < await count ; i++) {
-    const item = dropdownItems.nth(i);
-    const text = await item.innerText();
-      console.log(`Clicking on: ${text}`);
-      await item.click();
-}}
 
 public async clickPolygonButtonForAlarmSettings(){
     const polyBtn = await this.findLocator(locators.polygonBtn);
     await polyBtn.nth(4).waitFor({ state: 'visible' });
     await polyBtn.nth(4).click();
 }
-public async validatepolygonFunctionalityForAlarmSettings(){
-    await this.page.waitForSelector(locators.polygondropdownOptions);
-    const dropdownItems = await this.findLocator(locators.polygondropdownOptions);
-    const count = dropdownItems.count();
-  
-    for (let i = 0; i < await count ; i++) {
-    const item = dropdownItems.nth(i);
-    const text = await item.innerText();
-      console.log(`Clicking on: ${text}`);
-      await item.click();
-}}
+
+//this method is used to validate the headers against the expected 
+// after selecting all the options from the columns dropdown
 public async getAllHeadersTextAfterColumnsSelection(): Promise<string[]> {
     const tableHeaders= await this.findLocator(locators.tableHeaders);
     await tableHeaders.last().waitFor({state:"visible"});
@@ -182,6 +153,7 @@ public async getAllHeadersTextAfterColumnsSelection(): Promise<string[]> {
     return headerTexts;
 }
 
+//this method click the columns dropdown and select all the unselected values.
 public async validateColumnsDropdownFunctionalityInResidentsPage (){
     const residentColumnsLocator = await this.findLocator(locators.residentColumns);
     const clientNumberXpath = await this.findLocator(locators.clientNumberColumnXpath);
@@ -199,6 +171,7 @@ public async validateColumnsDropdownFunctionalityInResidentsPage (){
     await activeFilters.click({ force: true });
 }
 
+//this method is used to click ResetFilter button from the columns dropdown
 public async validateResetFiltersFunctionality(){
     const restFilters = await this.findLocator(locators.resetFiltersXpath);
     await restFilters.waitFor({state:"attached"});
@@ -206,6 +179,7 @@ public async validateResetFiltersFunctionality(){
 
 }
 
+//this method is used to click Reset Visibility button from the columns dropdown
 public async resetVisibilityFunctionality(){
     await this.page.waitForLoadState('networkidle');
      await this.page.waitForTimeout(2000); 
@@ -221,6 +195,7 @@ public async resetVisibilityFunctionality(){
     await this.page.waitForTimeout(5000);  
 }
 
+//this methos is used to click Edit button and once form is opened, validate the header test of the form.
 public async validateEditButtonFunctionality(){
     await this.page.waitForLoadState('networkidle');
     const editBtn = await this.findLocator(locators.editButtonXpath);
@@ -231,6 +206,7 @@ public async validateEditButtonFunctionality(){
      expect(editBoxheaderText).toContain("Cliënt bewerken");
 }
 
+//this method is used to get all label names from the form
 public async getAllLabelNames() :Promise<string[]> {
   const formLabel = await this.findLocator(locators.formlabelCSS);
   const formLabelCount =formLabel.count();
@@ -242,6 +218,7 @@ public async getAllLabelNames() :Promise<string[]> {
   return labelTexts;  
 }
 
+//this method is used to enter the values in the Edit form
 public async fillFormData(nameDataValue:string,clientNumberValue:string,streetValue:string,houseNumberValue:string,postalCodeValue:string,cityValue:string,TelephoneNumber:string){
   const nameData = await this.findLocator(locators.nameDataForm);
   const clientNumberData = await this.findLocator(locators.clientNumberDataForm);

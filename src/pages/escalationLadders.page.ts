@@ -1,3 +1,7 @@
+//** GayathriAsokh
+// This page is used to perform UI operations in Escalation ladders page 
+// in both Sensara Test and Acceptance environment*/
+
 import {Page, expect} from "@playwright/test";
 import Wrapper from "../base/Wrapper";
 import locators from "../common/locators";
@@ -53,18 +57,6 @@ public async clickPolygonButtonForSectorInEscalationLadders(){
     await polyBtn.first().click();
 }
 
-public async validatepolygonFunctionality(){
-    const dropdownItems = await this.findLocator(locators.polygondropdownOptions);
-    const numberOfOptions = dropdownItems.count();
-  
-    for (let i = 0; i < await numberOfOptions ; i++) {
-    const item = dropdownItems.nth(i);
-    const text = await item.innerText();
-    console.log(`Clicking on: ${text}`);
-
-    await item.click();
-}}
-
 public async clickPolygonButtonForTotalDelayInEscalationLadders(){
     const polyBtn = await this.findLocator(locators.polygonBtn);
     await polyBtn.nth(1).waitFor({ state: 'visible' });
@@ -83,6 +75,7 @@ public async clickPolygonButtonForStep2InEscalationLadders(){
     await polyBtn.nth(3).click();
 }
 
+//this method click the columns dropdown and select all the unselected values.
 public async validateColumnsDropdownFunctionalityInEscalationLaddersPage (){
     const residentColumnsLocator = await this.findLocator(locators.residentColumns);
     const sectorLoc = await this.findLocator(locators.sectorXpath);
@@ -90,6 +83,7 @@ public async validateColumnsDropdownFunctionalityInEscalationLaddersPage (){
     const step1Loc = await this.findLocator(locators.step1Xpath);
     const step2Loc = await this.findLocator(locators.step2Xpath);
     const activeFilters = await this.findLocator(locators.activeFiltersXpath);
+    
      await this.page.waitForTimeout(2000);
     await residentColumnsLocator.nth(2).waitFor({state:"attached"});
     await residentColumnsLocator.nth(2).click();
@@ -106,7 +100,8 @@ public async validateColumnsDropdownFunctionalityInEscalationLaddersPage (){
     await activeFilters.waitFor({state:"visible"});
     await activeFilters.click({ force: true });
 }
-
+//this method is used to validate the headers against the expected 
+// after selecting all the options from the columns dropdown
 public async getAllHeadersTextAfterColumnsSelectionInEscalationLadderPage(): Promise<string[]> {
     const tableHeaders= await this.findLocator(locators.tableHeaders);
     await tableHeaders.last().waitFor({state:"visible"});
@@ -121,6 +116,8 @@ public async getAllHeadersTextAfterColumnsSelectionInEscalationLadderPage(): Pro
     return headerTexts;
 }
 
+//this method is used to add new escalation ladder step, and validate delete button functionality 
+// and perform save operation
 public async addNewEscalationLadders(){
     const addEscalationLadder = await this.findLocator(locators.addEscalationLadderXpath);
     await addEscalationLadder.waitFor({ state: "visible" });
@@ -197,6 +194,23 @@ public async addNewEscalationLadders(){
      await saveBTn.waitFor({ state: "visible" });
     await saveBTn.click();
     await this.page.waitForTimeout(5000); 
+}
+
+//this method is used to search the added escalation step from the search box and delete it
+public async searchAddedEscalationStepAndPerformDeletion(sectorsUsersData:string){
+    const searchInputBox = await this.findLocator(locators.searchInputBoxXpath);
+    const deleteButton = await this.findLocator(locators.deleteButtonXpath);
+    const toDeleteBtnXpath = await this.findLocator(locators.toDeleteBtnXpath);
+    
+     await this.page.waitForLoadState('networkidle');
+     await searchInputBox.waitFor({state:"attached"});
+      await searchInputBox.fill(sectorsUsersData);
+      await this.page.waitForLoadState('networkidle');
+      await deleteButton.waitFor({state:"attached"});
+      await deleteButton.click();
+      await this.page.waitForTimeout(1000);
+       await toDeleteBtnXpath.waitFor({state:"attached"});
+      await toDeleteBtnXpath.click();
 }
 
 

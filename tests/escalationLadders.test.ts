@@ -5,12 +5,13 @@ import ResidentPage from "../src/pages/resident.page"
 import { Page } from "@playwright/test";
 import data from "../testData/data.json";
 import EscalationLaddersPage from "../src/pages/escalationLadders.page";
-
+import AlarmOverviewPage from "../src/pages/alarmOverview.page";
 
 let page: Page;
 let loginPage: LoginPage;
 let residentPage: ResidentPage;
 let escalationLaddersPage: EscalationLaddersPage;
+let alarmoverviewPage: AlarmOverviewPage;
 
 test.describe('Resident Page Tests', () => {
 
@@ -19,6 +20,7 @@ test.describe('Resident Page Tests', () => {
      page = await browser.newPage();
     loginPage = new LoginPage(page);
      residentPage = new ResidentPage(page);
+     alarmoverviewPage = new AlarmOverviewPage(page);
      escalationLaddersPage = new EscalationLaddersPage(page);
      await page.goto(ENV.BASE_URL);
    });
@@ -54,7 +56,7 @@ test("validate arrowupDownFunctionality in Escalation Ladders page for Sector co
 
 test("validate Dropdown value in polygon Button for Sector column in Escalation Ladders page", async()=> {
     await escalationLaddersPage.clickPolygonButtonForSectorInEscalationLadders();
-    await escalationLaddersPage.validatepolygonFunctionality();
+    await alarmoverviewPage.validatepolygonFunctionality();
 });
 
 test("validate arrowupDownFunctionality in Escalation Ladders page for Total Delay column", async () => {
@@ -68,7 +70,7 @@ test("validate arrowupDownFunctionality in Escalation Ladders page for Total Del
 
 test("validate Dropdown value in polygon Button for Total Delay column in Escalation Ladders page", async()=> {
     await escalationLaddersPage.clickPolygonButtonForTotalDelayInEscalationLadders();
-    await escalationLaddersPage.validatepolygonFunctionality();
+    await alarmoverviewPage.validatepolygonFunctionality();
 });
 
 test("validate arrowupDownFunctionality in Escalation Ladders page for Step 1 column", async () => {
@@ -82,7 +84,7 @@ test("validate arrowupDownFunctionality in Escalation Ladders page for Step 1 co
 
 test("validate Dropdown value in polygon Button for Step1 column in Escalation Ladders page", async()=> {
     await escalationLaddersPage.clickPolygonButtonForStep1InEscalationLadders();
-    await escalationLaddersPage.validatepolygonFunctionality();
+    await alarmoverviewPage.validatepolygonFunctionality();
 });
 
 test("validate arrowupDownFunctionality in Escalation Ladders page for Step 2 column", async () => {
@@ -96,7 +98,7 @@ test("validate arrowupDownFunctionality in Escalation Ladders page for Step 2 co
 
 test("validate Dropdown value in polygon Button for Step2 column in Escalation Ladders page", async()=> {
     await escalationLaddersPage.clickPolygonButtonForStep2InEscalationLadders();
-    await escalationLaddersPage.validatepolygonFunctionality();
+    await alarmoverviewPage.validatepolygonFunctionality();
 });
 
 test("Validate columns Dropdown in Escalation Ladders page", async()=> {
@@ -111,8 +113,9 @@ test("Validate columns Dropdown in Escalation Ladders page", async()=> {
     await residentPage.resetVisibilityFunctionality();
 });
 
-test("validate add step in Escalation ladder", async()=> {
+test("validate add and delete operations in Escalation ladder", async()=> {
    await escalationLaddersPage.addNewEscalationLadders();
+   await escalationLaddersPage.searchAddedEscalationStepAndPerformDeletion(data.sectorsUsersData);
 })
 
 })

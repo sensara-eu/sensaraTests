@@ -1,3 +1,7 @@
+//** GayathriAsokh
+// This page is used to perform UI operations in Alarm Overview page 
+// in both Sensara Test and Acceptance environment*/
+
 import {Page, expect} from "@playwright/test";
 import Wrapper from "../base/Wrapper";
 import locators from "../common/locators";
@@ -18,6 +22,8 @@ export default class AlarmOverviewPage extends Wrapper{
     
   }
 
+// this method is used to get all the table headers in alarm Overview page and 
+// validate it against the expected one
   public async getAllHeadersTextsInAlarmOverviewPage(): Promise<string[]> {
     const tableHeaders= await this.findLocator(locators.tableHeaders);
     await tableHeaders.first().waitFor({state:"visible"});
@@ -108,7 +114,7 @@ public async clickPolygonButtonForType(){
     await polyBtn.first().waitFor({ state: 'visible' });
     await polyBtn.first().click();
 }
-
+//this method is used to click the polygon button and select all the values from the polygon dropdown
 public async validatepolygonFunctionality(){
     const dropdownItems = await this.findLocator(locators.polygondropdownOptions);
     const numberOfOptions = dropdownItems.count();
@@ -121,6 +127,7 @@ public async validatepolygonFunctionality(){
     await item.click();
 }}
 
+//this method is used to validate calendar date picker for the creation date field(there is existing bug)
 public async validatepolygonFunctionalityForCreationDate(){
   const fromDateBtn = await this.findLocator(locators.fromDateButtonXpath);
   const nextMonthBtn = await this.findLocator(locators.nextButtonXpath);
@@ -186,6 +193,7 @@ public async clickPolygonButtonForProcessor(){
     await polyBtn.nth(5).click();
 }
 
+//this method is used to validate the pagination functionality in alarm overview page
 public async validatePaginationFunctionalityForRightStroke(){
     const paginationRightBtn = await this.findLocator(locators.paginationRightXpath);
     const numberOfItems = await this.findLocator(locators.tabledataXpath);
@@ -212,6 +220,7 @@ public async validatePaginationFunctionalityForLeftStroke(){
 
 }
 
+//this method is used to validate the toggle button-the automatic refresh functionality 
 public async validateAutomaticRefreshFunctionality() {
   await this.page.waitForLoadState("networkidle");
   const paginationLeft = await this.findLocator(locators.paginationLeftXpath);
@@ -247,12 +256,8 @@ public async validateAutomaticRefreshFunctionality() {
   }
 }
 
+//this method is used to check for the Alarm image 'open' status by hovering and processor the alarm.
 public async validateAlarmProcessingFunctionality() {
-  //  await this.page.waitForLoadState("networkidle");
-  //   const paginationRightBtn = await this.findLocator(locators.paginationRightXpath);
-  //   await paginationRightBtn.waitFor({state: 'visible'});
-  //   await paginationRightBtn.click();
-  //   await this.page.waitForLoadState("networkidle");
 
   const alarmImages = await this.findLocator(locators.openAlarmXpath); 
   const count = await alarmImages.count();
@@ -292,9 +297,6 @@ public async validateAlarmProcessingFunctionality() {
       await optionToSelect.click();
       await expect(dropdownButton.locator('span').nth(3)).toHaveText('Afgehandeld');
 
-      // const saveBtn = await this.findLocator(locators.saveButton);
-      // await saveBtn.waitFor({ state: "attached" });
-      // await saveBtn.click();
       const closeBtn = await this.findLocator(locators.closeButton);
       await closeBtn.waitFor({state:"attached"});
       await closeBtn.click();
@@ -307,6 +309,7 @@ public async validateAlarmProcessingFunctionality() {
   }
 }
 
+//this method click the columns dropdown and select all the unselected values.
 public async validateColumnsDropdownFunctionalityInAlarmOverviewPage (){
     const residentColumnsLocator = await this.findLocator(locators.residentColumns);
     const lastModifiedLoc = await this.findLocator(locators.lastModifiedXpath);
@@ -324,6 +327,8 @@ public async validateColumnsDropdownFunctionalityInAlarmOverviewPage (){
     await activeFilters.click({ force: true });
 }
 
+//this method is used to validate the headers against the expected 
+// after selecting all the options from the columns dropdown
 public async getAllHeadersTextAfterColumnsSelectionInAlarmOverviewPage(): Promise<string[]> {
     const tableHeaders= await this.findLocator(locators.tableHeaders);
     await tableHeaders.last().waitFor({state:"visible"});

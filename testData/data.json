@@ -12,5 +12,17 @@
     "expectedHeaderInAlarmOverViewPage": ["Beschrijving","Aanmaakdatum","Alarm", "Naam", "Zorgsectie", "Behandelaar"],
     "expectedHeadersAfterColumnsOptionsInAlarmOverViewPage": ["Beschrijving", "Aanmaakdatum","Laatst gewijzigd","Locatie","Geëscaleerd","Alarm","Naam","Zorgsectie","Behandelaar"],
     "expectedEscalationPageHeader": "Escalatieladders",
-    "expectedHeadersAfterColumnsOptionsInEscalationLadderPage": ["Zorgsectie","Totale doorlooptijd","➛ Stap 1", "➛ Stap 2"]
+    "expectedHeadersAfterColumnsOptionsInEscalationLadderPage": ["Zorgsectie","Totale doorlooptijd","➛ Stap 1", "➛ Stap 2"],
+    "expectedPageHeaderTitle": "Gebruikers",
+    "expectedUsersPageHeader": ["Naam","E-mail","Rollen","Zorgsectie(s)"],
+    "expectedLabelsInAddUser": ["E-mail *", "Naam *", "Wachtwoord","Bevestig wachtwoord","Telefoonnummer","Rollen *","Zorgsectie(s)"],
+    "nameUsersData": "UsersTest",
+    "passwordUsersData": "Qwerty#55",
+    "confPasswordUsersData" : "Qwerty#55",
+    "phoneNumberUsersData": "0623374678",
+    "rollenUsersData": "Configuratiebeheerder",
+    "sectorsUsersData": "GayathriTest"
+
+
+
 }
