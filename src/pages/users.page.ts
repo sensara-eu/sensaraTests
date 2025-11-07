@@ -173,8 +173,8 @@ public async searchAddedUsersAndPerformDeletion(nameUsersData:string){
      await searchInputBox.waitFor({state:"attached"});
       await searchInputBox.fill(nameUsersData);
       await this.page.waitForLoadState('networkidle');
-      await deleteButton.waitFor({state:"attached"});
-      await deleteButton.click();
+      await deleteButton.first().waitFor({state:"attached"});
+      await deleteButton.first().click();
       await this.page.waitForTimeout(1000);
        await toDeleteBtnXpath.waitFor({state:"attached"});
       await toDeleteBtnXpath.click();
