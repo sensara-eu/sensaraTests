@@ -36,5 +36,5 @@ Follow these steps to set up the project and run the tests:
 1. via VS Code Terminal for test environment : test_env="test" npx playwright test
 2. via vs code TErminal for Acceptance environment : test_env="acceptance" npx playwright test
 
-### Git pipeline
+### Github pipeline
   Added playwright.yaml file, so the code will be execued in both test and acceptance environment in github pipeline when you push the code to git.
